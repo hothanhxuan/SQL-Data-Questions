@@ -4,7 +4,8 @@ SELECT
       ,COUNT(*) AS item_count 
       ,500,000/total_sqr_prime 
 FROM inventory
-GROUP BY item_type;
+GROUP BY item_type
+
 
 -- Amazon wants to maximize the storage capacity of its 500,000 square-foot warehouse by prioritizing a specific batch of prime items. 
 -- The specific prime product batch detailed in the inventory table must be maintained.

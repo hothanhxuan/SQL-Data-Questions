@@ -7,25 +7,28 @@ WITH count_item_and_total_sqr AS
         ,COUNT(item_id) FILTER (WHERE item_type = 'not_prime') AS batch_non_prime_count 
   FROM inventory
 )
+,
 max_prime_cnt AS
 (
   SELECT
-          FLOOR(500000/total_sqr_prime) AS prime_occupied_area -- warehouse area / total prime area 
+          FLOOR(500000/total_sqr_prime) *  total_sqr_prime AS prime_occupied_area -- warehouse area / total prime area 
           ,FLOOR(500000/total_sqr_prime) * batch_prime_count AS prime_item_count -- (warehouse area / total prime area)*Number of Prime Batches
   FROM count_item_and_total_sqr
 )
 
 SELECT 
       'prime_eligible' AS item_type 
-      ,prime_item_count
+      ,prime_item_count AS item_count
 FROM max_prime_cnt 
 
 UNION 
 
 SELECT
       'not_prime' AS item_type  
-      ,FLOOR((500000 - prime_occupied_area)*batch_non_prime_count) AS non_prime_occupied_area -- (total areas - remaining_space_for_non)  
-FROM max_prime_cnt, count_item_and_total_sqr;   
+      ,FLOOR((500000 - prime_occupied_area) / total_sqr_non_prime) * batch_non_prime_count AS item_count -- (total areas - remaining_space_for_non)  
+FROM max_prime_cnt, count_item_and_total_sqr
+
+ORDER BY item_count DESC;
 
 
 -- Amazon wants to maximize the storage capacity of its 500,000 square-foot warehouse by prioritizing a specific batch of prime items. 

@@ -2,8 +2,10 @@ WITH count_item_and_total_sqr AS
 (
   SELECT 
         item_type
-        ,SUM(square_footage) AS total_sqr_prime
-        ,COUNT(*) AS item_count 
+        ,SUM(square_footage) FILTER (WHERE item_type = 'prime_eligible')AS total_sqr_prime
+        ,COUNT(*) (WHERE item_type = 'non_prime') AS prime_item_count 
+        ,SUM(square_footage) FILTER (WHERE item_type = 'prime_eligible')AS total_sqr_non_prime
+        ,COUNT(*) (WHERE item_type = 'non_prime') AS non_prime_item_count 
   FROM inventory
   GROUP BY item_type
 )
@@ -30,6 +32,8 @@ calculation_for_non_prime AS
   FROM calculation_for_prime 
   WHERE item_type = 'non_prime'
 )
+
+500000 - (total_sqr_prime * prime_item_combination_count) / total_sqr_prime ) * item_count AS non_prime_item_count
 
 
 -- Amazon wants to maximize the storage capacity of its 500,000 square-foot warehouse by prioritizing a specific batch of prime items. 

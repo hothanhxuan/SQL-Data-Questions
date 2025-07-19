@@ -43,7 +43,17 @@ WHERE ranking IN ((total_row + 1) / 2, (total_row + 2) / 2);
 -- g là tên bảng tạm
 -- i là cột chứa các giá trị từ generate_series
 
-
+SELECT 
+      ROUND(AVG(searches),1) AS median
+FROM (SELECT 
+        searches
+        ,ROW_NUMBER() OVER (ORDER BY searches) AS ranking 
+        ,COUNT(*) OVER () AS total_row
+      FROM (SELECT searches 
+            FROM search_frequency
+            JOIN generate_series(1, num_users) AS g(i) ON TRUE) AS expanded 
+      ) AS ordered 
+WHERE ranking IN ((total_row + 1) / 2, (total_row + 2) / 2);
 
 -- ĐỀ BÀI:
 -- Google's marketing team is making a Superbowl commercial and needs a simple statistic to put on their TV ad: the median number of searches a person made last year.

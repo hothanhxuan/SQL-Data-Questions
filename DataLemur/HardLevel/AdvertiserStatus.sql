@@ -16,3 +16,6 @@ SELECT
       END AS new_status 
 FROM raw_data
 ORDER BY user_id; 
+
+
+-- COALESCE function to combine the user_id columns from both tables. 

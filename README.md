@@ -7,4 +7,4 @@ The goal is to enhance SQL problem-solving skills, understand real-world busines
 
 - Each SQL query is saved in a `.sql` file.
 - Solutions are grouped by topics or difficulty where possible (e.g., joins, aggregation, window functions).
-- Code is written to be readable, modular, and compatible with PostgreSQL.
+- Code is written to be readable, modular, and compatible with PostgreSQL(DataLemur and LeetCode), and MySQL(HackerRank).

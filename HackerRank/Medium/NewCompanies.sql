@@ -13,7 +13,7 @@ LEFT JOIN Manager AS M
     ON S.company_code = M.company_code
 LEFT JOIN Employee AS E
     ON M.company_code = E.company_code
-GROUP BY C.company_code
+GROUP BY C.company_code, C.founder 
 ORDER BY C.company_code
 
 

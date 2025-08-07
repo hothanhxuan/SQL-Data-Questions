@@ -1,29 +1,20 @@
-With tb1 AS 
-(
-    SELECT 
-        C.company_code
-        ,C.founder
-        , L.lead_manager_code
-        , S.senior_manager_code
-        , M.manager_code
-        , E.employee_code
-    FROM Company AS C
-    LEFT JOIN Lead_Manager AS L
-        ON C.company_code = L.company_code
-    LEFT JOIN Senior_Manager AS S
-        ON L.company_code = S.company_code
-    LEFT JOIN Manager AS M
-        ON S.company_code = M.company_code
-    LEFT JOIN Employee AS E
-        ON M.company_code = E.company_code
-)
 SELECT 
-    tb1.*
-    ,(
-    SELECT COUNT(*) FROM tb1 AS tb2 WHERE tb2.company_code = tb1.company_code
-    ) AS group_count
-FROM tb1
-ORDER BY tb1.company_code;
+    C.company_code, C.founder
+    ,COUNT(DISTINCT L.lead_manager_code) AS lead_manager_count
+    ,COUNT(DISTINCT S.senior_manager_code) AS senior_manager_count
+    ,COUNT(DISTINCT M.manager_code) AS manager_count
+    ,COUNT(DISTINCT E.employee_code) AS employee_count
+FROM Company AS C
+LEFT JOIN Lead_Manager AS L
+    ON C.company_code = L.company_code
+LEFT JOIN Senior_Manager AS S
+    ON L.company_code = S.company_code
+LEFT JOIN Manager AS M
+    ON S.company_code = M.company_code
+LEFT JOIN Employee AS E
+    ON M.company_code = E.company_code
+GROUP BY C.company_code
+ORDER BY C.company_code
 
 
 -- Given the table schemas below, write a query to print the company_code, founder name, total number of lead managers, 

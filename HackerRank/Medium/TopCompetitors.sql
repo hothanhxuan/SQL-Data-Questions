@@ -13,9 +13,9 @@ WHERE
 GROUP BY 
     H.hacker_id, H.name
 HAVING 
-    COUNT(S.submission_id) > 1
+    COUNT(S.challenge_id) > 1
 ORDER BY
-    COUNT(S.submission_id) DESC, H.hacker_id ASC; 
+    COUNT(S.challenge_id) DESC, H.hacker_id ASC; 
 
 -- Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! 
 -- Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. 

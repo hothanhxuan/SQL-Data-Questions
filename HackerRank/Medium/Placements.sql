@@ -1,4 +1,27 @@
-
+SELECT Name
+FROM
+(
+  SELECT tb1.ID, tb1.Name, tb1.Salary, tb2.Friend_ID, tb2.Salary AS Friend_Salary
+  FROM
+    (
+    SELECT S.ID, S.Name, P.Salary
+    FROM Students S
+    LEFT JOIN Packages P
+    ON S.ID = P.ID
+    ) AS tb1
+  LEFT JOIN 
+    (
+    SELECT F.ID, P.Salary, F.Friend_ID
+    FROM Friends F
+    LEFT JOIN Packages P
+    ON F.Friend_ID = P.ID
+    ) AS tb2
+  ON tb1.ID = tb2.ID 
+  HAVING tb2.Salary > tb1.Salary
+  
+) AS filtered
+  
+ORDER BY Friend_Salary; 
 
 -- You are given three tables: Students, Friends and Packages. 
 -- Students contains two columns: ID and Name. 

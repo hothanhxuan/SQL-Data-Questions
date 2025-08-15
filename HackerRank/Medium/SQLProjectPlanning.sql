@@ -1,3 +1,5 @@
+SELECT *
+FROM Projects
 
 
 -- You are given a table, Projects, containing three columns: Task_ID, Start_Date and End_Date. 

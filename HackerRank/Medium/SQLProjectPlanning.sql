@@ -1,5 +1,21 @@
-SELECT *
-FROM Projects
+SET @row := 0;
+
+SELECT start_val, end_val
+FROM (
+    SELECT 
+        MIN(Start_date) AS start_val,
+        MAX(End_date) AS end_val,
+        COUNT(*) AS length
+    FROM (
+        SELECT 
+            Start_date, End_date,
+            DATEDIFF(End_date, '2000-01-01') - (@row := @row + 1) AS grp
+        FROM Projects, (SELECT @row := 0) r
+        ORDER BY End_date
+    ) t
+    GROUP BY grp
+) x
+ORDER BY x.length, x.start_val;
 
 
 -- You are given a table, Projects, containing three columns: Task_ID, Start_Date and End_Date. 

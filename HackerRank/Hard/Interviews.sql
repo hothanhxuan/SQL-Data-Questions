@@ -12,3 +12,8 @@ SELECT H.hacker_id, H.name, COUNT(C.challenge_id) AS cnt
 -- total_views, and total_unique_views for each contest sorted by contest_id. Exclude the contest from the result if all four sums are .
 -- Note: A specific contest can be used to screen candidates at more than one college, but each college only holds  screening contest.
 
+-- Sample Output:
+-- 66406 17973 Rose 111 39 156 56
+-- 66556 79153 Angela 0 0 11 10
+-- 94828 80275 Frank 150 38 41 15
+

@@ -1,4 +1,4 @@
-
+SELECT 
  
 
 -- Write a solution to find all dates' id with higher temperatures compared to its previous dates (yesterday).

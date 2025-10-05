@@ -1,3 +1,10 @@
+SELECT name, bonus
+FROM 
+    (SELECT E.empId, E.name, E.supervisor, E.salary, B.bonus
+    FROM Employee as E
+    LEFT JOIN Bonus as B
+        ON E.empId = B.empId) as full_table
+WHERE bonus < 1000 OR bonus IS NULL;
 
 -- Write a solution to report the name and bonus amount of each employee with a bonus less than 1000.
 -- Return the result table in any order.

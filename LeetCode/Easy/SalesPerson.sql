@@ -1,4 +1,14 @@
-
+SELECT name
+FROM SalesPerson
+WHERE name NOT IN (
+    SELECT S.name
+    FROM Company AS C
+    LEFT JOIN Orders AS O
+    ON C.com_id = O.com_id
+    LEFT JOIN SalesPerson AS S
+    ON O.sales_id = S.sales_id
+    WHERE C.name = 'RED' AND O.sales_id IS NOT NULL)
+;
 
 -- Write a solution to find the names of all the salespersons who did not have any orders related to the company with the name "RED".
 -- Return the result table in any order

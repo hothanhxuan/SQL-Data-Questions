@@ -5,7 +5,6 @@ SELECT x, y, z,
     ELSE 'No'
   END AS triangle
 FROM Triangle;
-  
 
 -- Report for every three line segments whether they can form a triangle.
 -- Return the result table in any order.

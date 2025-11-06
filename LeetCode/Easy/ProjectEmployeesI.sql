@@ -1,4 +1,8 @@
-
+SELECT P.project_id, AVG(E.experience_years) AS average_years 
+FROM Project AS P
+LEFT JOIN Employee AS E
+ON P.employee_id = E.employee_id 
+GROUP BY P.project_id;
 
 -- Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.
 -- Return the result table in any order.

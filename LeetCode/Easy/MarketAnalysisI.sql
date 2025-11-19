@@ -1,4 +1,7 @@
-
+SELECT id, movie, description, rating
+FROM Cinema
+WHERE id % 2 <> 0 AND description <> "boring"
+ORDER BY rating DESC; 
 
 -- Write a solution to find for each user, the join date and the number of orders they made as a buyer in 2019.
 -- Return the result table in any order.

@@ -1,3 +1,10 @@
+SELECT P.product_name, SUM(O.unit) AS unit
+FROM Orders AS O
+LEFT JOIN Products AS P
+ON O.product_id = P.product_id
+WHERE MONTH(O.order_date) = 02 AND YEAR(O.order_date) = 2020
+GROUP BY O.product_id
+HAVING unit >= 100; 
 
 -- Write a solution to get the names of products that have at least 100 units ordered in February 2020 and their amount.
 

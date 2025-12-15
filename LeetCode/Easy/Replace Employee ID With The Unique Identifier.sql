@@ -1,3 +1,7 @@
+SELECT EU.unique_id, E.name 
+FROM Employees AS E 
+LEFT JOIN EmployeeUNI AS EU
+ON EU.id = E.id;
 
 -- Write a solution to show the unique ID of each user, If a user does not have a unique ID replace just show null.
 

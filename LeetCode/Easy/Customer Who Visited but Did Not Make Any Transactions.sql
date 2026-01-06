@@ -1,3 +1,13 @@
+SELECT customer_id, COUNT(customer_id) as count_no_trans
+FROM (
+    SELECT V.visit_id, V.customer_id, T.transaction_id, T.amount
+    FROM Visits as V
+    LEFT JOIN Transactions as T
+    ON V.visit_id = T.visit_id               
+    ) as tb1
+WHERE transaction_id IS NULL
+GROUP BY customer_id;
+
 -- Write a solution to find the IDs of the users who visited without making any transactions 
 -- and the number of times they made these types of visits.
   

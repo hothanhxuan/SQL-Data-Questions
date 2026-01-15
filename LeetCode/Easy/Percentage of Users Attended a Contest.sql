@@ -1,3 +1,9 @@
+SELECT contest_id, 
+       ROUND(COUNT(DISTINCT user_id) * 100 /(SELECT COUNT(user_id) from Users),2) as percentage
+FROM Register
+GROUP BY contest_id
+ORDER BY percentage DESC, contest_id;
+
 -- Write a solution to find for each date the number of different products sold and their names.
 -- The sold products names for each date should be sorted lexicographically.
 -- Return the result table ordered by sell_date.

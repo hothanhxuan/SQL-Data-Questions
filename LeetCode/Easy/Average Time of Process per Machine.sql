@@ -1,10 +1,3 @@
-SELECT
-    sell_date,
-    COUNT(DISTINCT product) AS num_sold,
-    GROUP_CONCAT(DISTINCT product ORDER BY product SEPARATOR ',') AS products
-FROM Activities
-GROUP BY sell_date
-ORDER BY sell_date;
 
 -- There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
 -- The time to complete a process is the 'end' timestamp minus the 'start' timestamp.

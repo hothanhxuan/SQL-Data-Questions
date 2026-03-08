@@ -1,3 +1,13 @@
+SELECT employee_id, department_id
+FROM Employee
+WHERE primary_flag = 'Y'
+   OR employee_id IN (
+        SELECT employee_id
+        FROM Employee
+        GROUP BY employee_id
+        HAVING COUNT(*) = 1
+   );
+
 -- Employees can belong to multiple departments. When the employee joins other departments, 
 -- they need to decide which department is their primary department. Note that when an employee belongs to only one department, 
 -- their primary column is 'N'.

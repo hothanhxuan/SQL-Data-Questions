@@ -1,3 +1,13 @@
+SELECT *
+FROM (
+    SELECT product_id, 'store1' AS store, store1 AS price FROM Products
+    UNION ALL
+    SELECT product_id, 'store2', store2 FROM Products
+    UNION ALL
+    SELECT product_id, 'store3', store3 FROM Products
+) t
+WHERE price IS NOT NULL;
+
 -- Write a solution to rearrange the Products table so that each row has (product_id, store, price). 
 -- If a product is not available in a store, do not include a row with that product_id and store combination in the result table.
 -- Return the result table in any order.
